@@ -31,5 +31,6 @@ except ImportError:
 	pass
 
 # import any pure python here
+from mapper import mapper
 
 #
