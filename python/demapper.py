@@ -22,24 +22,23 @@
 import numpy as np
 from gnuradio import gr
 
-class mapper(gr.sync_block):
+class demapper(gr.sync_block):
     """
-    QPSK mapper.
+    QPSK demapper
     """
     def __init__(self):
         gr.sync_block.__init__(self,
-            name="mapper",
-            in_sig=[np.uint32],
-            out_sig=[np.complex64])
-        self.constellation = {'qpsk' : np.array([(+1+1j), (+1-1j), 
-                                                 (-1+1j), (-1-1j)])}
-
+            name="demapper",
+            in_sig=[np.complex64],
+            out_sig=[np.uint32])
+        self.constellation = {
+            'qpsk': np.array([(+1 + 1j), (+1 - 1j), (-1 + 1j), (-1 - 1j)])}  # 0, 1, 2, 3
 
     def work(self, input_items, output_items):
         in0 = input_items[0]
         out = output_items[0]
-        out[:] = self.constellation['qpsk'].take(in0)
+        map = self.constellation['qpsk']
+        dist = abs( np.kron(in0, np.ones([map.size, 1])) - np.kron(map, np.ones([in0.size, 1])).transpose() )
+        out[:] = np.argmin(dist, axis=0)
         return len(output_items[0])
-
-
 

@@ -19,27 +19,23 @@
 # Boston, MA 02110-1301, USA.
 # 
 
-import numpy as np
-from gnuradio import gr
+from gnuradio import gr, gr_unittest
+from gnuradio import blocks
+from demapper import demapper
 
-class mapper(gr.sync_block):
-    """
-    QPSK mapper.
-    """
-    def __init__(self):
-        gr.sync_block.__init__(self,
-            name="mapper",
-            in_sig=[np.uint32],
-            out_sig=[np.complex64])
-        self.constellation = {'qpsk' : np.array([(+1+1j), (+1-1j), 
-                                                 (-1+1j), (-1-1j)])}
+class qa_demapper (gr_unittest.TestCase):
 
+    def setUp (self):
+        self.tb = gr.top_block ()
 
-    def work(self, input_items, output_items):
-        in0 = input_items[0]
-        out = output_items[0]
-        out[:] = self.constellation['qpsk'].take(in0)
-        return len(output_items[0])
+    def tearDown (self):
+        self.tb = None
+
+    def test_001_t (self):
+        # set up fg
+        self.tb.run ()
+        # check data
 
 
-
+if __name__ == '__main__':
+    gr_unittest.run(qa_demapper, "qa_demapper.xml")
