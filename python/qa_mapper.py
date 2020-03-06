@@ -22,6 +22,7 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from mapper import mapper
+import numpy as np
 
 class qa_mapper (gr_unittest.TestCase):
 
@@ -32,10 +33,22 @@ class qa_mapper (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
-        self.tb.run ()
-        # check data
-
+        source_data = np.random.randint(0, high=4, size=10, dtype=np.int)
+        lut = np.array([(+1+1j), (+1-1j), (-1-1j), (-1+1j)], dtype=complex)
+        expected_result = lut[source_data]
+        source = blocks.vector_source_i(source_data)
+        qpsk_mapper = mapper()
+        sink = blocks.vector_sink_c()
+        self.tb.connect(source, qpsk_mapper)
+        self.tb.connect(qpsk_mapper, sink)
+        self.tb.run()
+        result_data = np.asarray(sink.data(), dtype=complex)
+        # Check data
+        comparison = expected_result == result_data
+        check = comparison.all()
+        print(check)
+        
 
 if __name__ == '__main__':
     gr_unittest.run(qa_mapper, "qa_mapper.xml")
+
