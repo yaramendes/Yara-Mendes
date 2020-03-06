@@ -31,7 +31,8 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    mapper.py DESTINATION ${GR_PYTHON_DIR}/t126
+    mapper.py
+    demapper.py DESTINATION ${GR_PYTHON_DIR}/t126
 )
 
 ########################################################################
@@ -42,3 +43,4 @@ include(GrTest)
 set(GR_TEST_TARGET_DEPS gnuradio-t126)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
 GR_ADD_TEST(qa_mapper ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_mapper.py)
+GR_ADD_TEST(qa_demapper ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_demapper.py)

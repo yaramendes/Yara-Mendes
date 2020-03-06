@@ -17,5 +17,6 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 install(FILES
-    t126_mapper.xml DESTINATION share/gnuradio/grc/blocks
+    t126_mapper.xml
+    t126_demapper.xml DESTINATION share/gnuradio/grc/blocks
 )
