@@ -36,7 +36,7 @@ class qa_demapper_v0 (gr_unittest.TestCase):
     def test_001_t (self):
         symbols = np.random.randint(0, high=4, size=10, dtype=np.int)
         expected_result = symbols
-        lut = np.array([(+1+1j), (+1-1j), (-1-1j), (-1+1j)], dtype=complex)
+        lut = np.array([(+1+1j), (-1+1j), (+1-1j), (-1-1j)], dtype=complex)
         source_data = lut[symbols]
         source = blocks.vector_source_c(source_data)
         qpsk_demapper_v0 = demapper_v0()

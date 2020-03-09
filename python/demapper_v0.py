@@ -42,11 +42,11 @@ class demapper_v0(gr.sync_block):
                 if s == 0:
                     symbol = np.complex64(+1+1j)
                 elif s == 1:
-                    symbol = np.complex64(+1-1j)
-                elif s == 2:
-                    symbol = np.complex64(-1-1j)
-                elif s == 3:
                     symbol = np.complex64(-1+1j)
+                elif s == 2:
+                    symbol = np.complex64(+1-1j)
+                elif s == 3:
+                    symbol = np.complex64(-1-1j)
                 else:
                     pass
                 distances[s] = (np.real(in0[i]) - np.real(symbol))**2 + (np.imag(in0[i]) - np.imag(symbol))**2

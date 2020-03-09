@@ -36,15 +36,21 @@ class mapper_v0(gr.sync_block):
     def work(self, input_items, output_items):
         in0 = input_items[0]
         out = output_items[0]
+        print(input_items)
+        print(type(input_items))
+        print(input_items[0])
+        print(type(input_items[0]))
+        # print(input_items[1])
+        # print(input_items[2])
         for i in range(len(in0)):
             if in0[i] == 0:
                 out[i] = +1+1j
             elif in0[i] == 1:
-                out[i] = +1-1j
-            elif in0[i] == 2:
-                out[i] = -1-1j
-            elif in0[i] == 3:
                 out[i] = -1+1j
+            elif in0[i] == 2:
+                out[i] = +1-1j
+            elif in0[i] == 3:
+                out[i] = -1-1j
             else:
                 pass
         return len(output_items[0])
