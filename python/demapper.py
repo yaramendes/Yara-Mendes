@@ -32,7 +32,7 @@ class demapper(gr.sync_block):
             in_sig=[np.complex64],
             out_sig=[np.uint32])
         self.constellation = {
-            'qpsk': np.array([(+1 + 1j), (+1 - 1j), (-1 + 1j), (-1 - 1j)])}  # 0, 1, 2, 3
+            'qpsk': np.array([(+1 + 1j), (-1 + 1j), (+1 - 1j), (-1 - 1j)])}  # 0, 1, 2, 3
 
     def work(self, input_items, output_items):
         in0 = input_items[0]

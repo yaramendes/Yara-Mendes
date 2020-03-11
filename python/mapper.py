@@ -31,8 +31,8 @@ class mapper(gr.sync_block):
             name="mapper",
             in_sig=[np.uint32],
             out_sig=[np.complex64])
-        self.constellation = {'qpsk' : np.array([(+1+1j), (+1-1j), 
-                                                 (-1+1j), (-1-1j)])}
+        self.constellation = {'qpsk' : np.array([(+1+1j), (-1+1j), 
+                                                 (+1-1j), (-1-1j)])}
 
 
     def work(self, input_items, output_items):
