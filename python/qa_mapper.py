@@ -34,7 +34,7 @@ class qa_mapper (gr_unittest.TestCase):
 
     def test_001_t (self):
         source_data = np.random.randint(0, high=4, size=10, dtype=np.int)
-        lut = np.array([(+1+1j), (+1-1j), (-1-1j), (-1+1j)], dtype=complex)
+        lut = np.array([(+1+1j), (-1+1j), (+1-1j), (-1-1j)], dtype=complex)
         expected_result = lut[source_data]
         source = blocks.vector_source_i(source_data)
         qpsk_mapper = mapper()
