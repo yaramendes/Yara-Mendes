@@ -38,10 +38,11 @@ class mapper_v0(gr.sync_block):
         out = output_items[0]
         # print(input_items)
         # print(type(input_items))
+        # print(len(input_items))
+        # print(type(input_items))
         # print(input_items[0])
+        # print(input_items[0].dtype)
         # print(type(input_items[0]))
-        # print(input_items[1])
-        # print(input_items[2])
         for i in range(len(in0)):
             if in0[i] == 0:
                 out[i] = +1+1j
