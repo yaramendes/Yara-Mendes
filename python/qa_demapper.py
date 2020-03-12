@@ -22,6 +22,7 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from demapper import demapper
+import numpy as np
 
 class qa_demapper (gr_unittest.TestCase):
 
@@ -32,9 +33,21 @@ class qa_demapper (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
-        self.tb.run ()
-        # check data
+        symbols = np.random.randint(0, high=4, size=10, dtype=np.int)
+        expected_result = symbols
+        lut = np.array([(+1+1j), (-1+1j), (+1-1j), (-1-1j)], dtype=complex)
+        source_data = lut[symbols]
+        source = blocks.vector_source_c(source_data)
+        qpsk_demapper = demapper()
+        sink = blocks.vector_sink_i()
+        self.tb.connect(source, qpsk_demapper)
+        self.tb.connect(qpsk_demapper, sink)
+        self.tb.run()
+        result_data = sink.data()
+        # Check data
+        comparison = expected_result == result_data
+        check = comparison.all()
+        print(check)
 
 
 if __name__ == '__main__':
