@@ -41,20 +41,18 @@ class demapper(gr.sync_block):
 
         # First Kronecker product generates a matrix where the lines are copies of in0.
         # Second Kronecker product generates a matrix where each lines repeats a symbol of the constellation in each column.
+        # The subtraction of the two matrices calculates the distances (a complex value) between the received symbols and the constellation symbols.
+        # The abs() function gives the absolute value of the distances complex values.
         dist = abs( np.kron(in0, np.ones([map.size, 1])) - np.kron(map, np.ones([in0.size, 1])).transpose() )
         
-        print(in0)
-
-        print(map.size)
-        print(np.ones([map.size, 1]))
-        print(np.kron(in0, np.ones([map.size, 1])))
-
-        print(in0)
-
-        print(in0.size)
-        print(np.ones([in0.size, 1]))
-        print(np.kron(map, np.ones([in0.size, 1])).transpose())
-
+        # print(in0)
+        # print(map.size)
+        # print(np.ones([map.size, 1]))
+        # print(np.kron(in0, np.ones([map.size, 1])))
+        # print(in0)
+        # print(in0.size)
+        # print(np.ones([in0.size, 1]))
+        # print(np.kron(map, np.ones([in0.size, 1])).transpose())
         # print(( np.kron(in0, np.ones([map.size, 1])) - np.kron(map, np.ones([in0.size, 1])).transpose() ))
         # print(dist)
 
