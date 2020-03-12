@@ -38,7 +38,28 @@ class demapper(gr.sync_block):
         in0 = input_items[0]
         out = output_items[0]
         map = self.constellation['qpsk']
+
+        # First Kronecker product generates a matrix where the lines are copies of in0.
+        # Second Kronecker product generates a matrix where each lines repeats a symbol of the constellation in each column.
         dist = abs( np.kron(in0, np.ones([map.size, 1])) - np.kron(map, np.ones([in0.size, 1])).transpose() )
+        
+        print(in0)
+
+        print(map.size)
+        print(np.ones([map.size, 1]))
+        print(np.kron(in0, np.ones([map.size, 1])))
+
+        print(in0)
+
+        print(in0.size)
+        print(np.ones([in0.size, 1]))
+        print(np.kron(map, np.ones([in0.size, 1])).transpose())
+
+        # print(( np.kron(in0, np.ones([map.size, 1])) - np.kron(map, np.ones([in0.size, 1])).transpose() ))
+        # print(dist)
+
+        # Check each column of the dist matrix for finding the smaller element. 
+        # The index of the row corresponds to the constellation's symbol index.
         out[:] = np.argmin(dist, axis=0)
         return len(output_items[0])
 
