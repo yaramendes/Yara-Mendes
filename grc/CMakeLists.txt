@@ -18,5 +18,8 @@
 # Boston, MA 02110-1301, USA.
 install(FILES
     t126_mapper.xml
-    t126_demapper.xml DESTINATION share/gnuradio/grc/blocks
+    t126_demapper.xml
+    t126_mapper_v0.xml
+    t126_demapper_v0.xml
+    t126_demapper_v1.xml DESTINATION share/gnuradio/grc/blocks
 )

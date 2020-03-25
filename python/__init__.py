@@ -33,5 +33,9 @@ except ImportError:
 # import any pure python here
 from mapper import mapper
 from demapper import demapper
+from mapper_v0 import mapper_v0
+from demapper_v0 import demapper_v0
+from demapper_v1 import demapper_v1
+
 
 #
